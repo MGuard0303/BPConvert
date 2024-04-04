@@ -4,7 +4,7 @@ class Region():
         self.order = 0
 
 
-class BPConvert():
+class Converter():
     def __init__(self) -> None:
         self.id = ""
         self.sequence = ""
@@ -12,20 +12,25 @@ class BPConvert():
 
 
     def parse(self, file: str, format: str = "bpseq") -> None:
-        with open(file, "r") as f:
-            for line in f:
-                if line.startswith(r"#"):
-                    self.id = line[1:-1]
-                else:
-                    line = line.strip().split()
-                    self.sequence += line[1]
+        if format == "bpseq":
+            self.id = ""
+            self.sequence = ""
+            self.regions = []
 
-                    # Record base pair as a tuple starting with a smaller number
-                    if int(line[0]) < int(line[2]):
-                        self.regions.append(Region((int(line[0]), int(line[2]))))
+            with open(file, "r") as f:
+                for line in f:
+                    if line.startswith(r"#"):
+                        self.id = line[1:-1]
+                    else:
+                        line = line.strip().split()
+                        self.sequence += line[1]
+
+                        # Record base pair as a tuple starting with a smaller number
+                        if int(line[0]) < int(line[2]):
+                            self.regions.append(Region((int(line[0]), int(line[2]))))
 
 
-    def convert(self) -> tuple:
+    def convert(self, path: str = "") -> tuple:
         ORD = (("(", ")"), ("[", "]"), ("{", "}"), ("<", ">"))
         
         regions_number = len(self.regions)
@@ -43,6 +48,12 @@ class BPConvert():
         db = ""
         for i in db_l:
             db += i
+
+        if path != "":
+            with open(f"{path}{self.id}.seq", "w") as f:
+                f.write(f"> {self.id}\n")
+                f.write(f"{self.sequence}\n")
+                f.write(f"{db}")
 
         return (self.id, db)
     
@@ -69,10 +80,10 @@ class BPConvert():
         
 
     def __set_region_order(self, regions: list, number: int) -> None:
-        regions[0].order == 0
+        regions[0].order = 0
 
         for i in range(1, number):
-            regions[i].order == 0
+            regions[i].order = 0
             ord_0 = [regions[0].value]
             ord_1, ord_2 = [], []
             
