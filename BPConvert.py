@@ -1,10 +1,10 @@
-class Region():
+class Region:
     def __init__(self, value: tuple) -> None:
         self.value = value
         self.order = 0
 
 
-class Converter():
+class Converter:
     def __init__(self) -> None:
         self.id = ""
         self.sequence = ""
@@ -55,7 +55,7 @@ class Converter():
                 f.write(f"{self.sequence}\n")
                 f.write(f"{db}")
 
-        return (self.id, db)
+        return self.id, db
     
 
     def __conflicted(self, region1: tuple, region2: tuple) -> bool:
