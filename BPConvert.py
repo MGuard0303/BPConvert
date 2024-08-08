@@ -51,7 +51,7 @@ class Converter:
 
         if path != "":
             with open(f"{path}{self.id}.seq", "w") as f:
-                f.write(f"> {self.id}\n")
+                f.write(f">{self.id}\n")
                 f.write(f"{self.sequence}\n")
                 f.write(f"{db}")
 
