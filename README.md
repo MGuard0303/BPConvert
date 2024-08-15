@@ -2,7 +2,7 @@
 
 This is an implenmentation of the simple First-Come-First-Served algorithm to convert RNA secondary structure from BPSEQ format to dot-bracket format described in this paper (https://doi.org/10.1093/bioinformatics/btx783).
 
-This package supports converting RNA secondary structure with up to four sets of brackets (order-3 pseudoknot).
+This package supports converting RNA secondary structure with up to 8 sets of brackets (order-7 pseudoknot).
 
 <br>
 
