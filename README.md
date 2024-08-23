@@ -20,7 +20,7 @@ Converter class possesses three attributes.
 
 * `.id` holds the name of target RNA. It is provided by the line starting with #.
 * `.sequence` holds the sequence of target RNA.
-* `.Regions` is the list of Region instances, which store base pair information as Python tuple.
+* `.regions` is the list of Region instances, which store base pair information as Python tuple.
 
 <br>
 
