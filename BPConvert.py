@@ -11,6 +11,12 @@ class Converter:
         self.regions = []
 
 
+    def reset(self) -> None:
+        self.id = ""
+        self.sequence = ""
+        self.regions = []
+
+
     def parse(self, file: str, format: str = "bpseq") -> None:
         if format == "bpseq":
             self.id = ""
